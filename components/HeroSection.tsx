@@ -12,6 +12,7 @@ export default function HeroSection() {
   });
 
   const y = useTransform(scrollYProgress, [0, 1], [0, 300]);
+  const bgY = useTransform(scrollYProgress, [0, 1], [0, 150]);
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
   const scale = useTransform(scrollYProgress, [0, 1], [1, 1.2]);
 
@@ -22,7 +23,7 @@ export default function HeroSection() {
     >
       {/* Starry Background */}
       <motion.div
-        style={{ scale, opacity }}
+        style={{ y: bgY, scale, opacity }}
         className="absolute inset-0 pointer-events-none"
       >
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-zinc-900 via-black to-black opacity-80" />
