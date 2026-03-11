@@ -91,12 +91,14 @@ export default function PlanetSection({
               {/* Rings for Saturn (Back half) */}
               {name === 'Saturn' && (
                 <div 
-                  className="absolute top-1/2 left-1/2 rounded-[50%] border-[16px] border-[#c29d62] pointer-events-none opacity-40"
+                  className="absolute top-1/2 left-1/2 rounded-[50%] pointer-events-none"
                   style={{
-                    width: '240%',
-                    height: '240%',
+                    width: '300%',
+                    height: '300%',
                     transform: 'translate(-50%, -50%) rotateX(75deg) rotateY(-15deg) rotateZ(-15deg)',
-                    boxShadow: '0 0 20px rgba(202, 138, 4, 0.3), inset 0 0 20px rgba(202, 138, 4, 0.3)',
+                    background: 'linear-gradient(160deg, rgb(245, 225, 180) 0%, rgb(210, 180, 120) 30%, rgb(140, 100, 60) 70%, rgb(50, 30, 15) 100%)',
+                    WebkitMaskImage: 'radial-gradient(circle closest-side, transparent 38%, rgba(0,0,0,0.3) 39%, rgba(0,0,0,0.7) 46%, transparent 48%, rgba(0,0,0,0.95) 50%, rgba(0,0,0,0.8) 64%, rgba(0,0,0,0.5) 72%, rgba(0,0,0,0.1) 78%, transparent 80%)',
+                    maskImage: 'radial-gradient(circle closest-side, transparent 38%, rgba(0,0,0,0.3) 39%, rgba(0,0,0,0.7) 46%, transparent 48%, rgba(0,0,0,0.95) 50%, rgba(0,0,0,0.8) 64%, rgba(0,0,0,0.5) 72%, rgba(0,0,0,0.1) 78%, transparent 80%)',
                     zIndex: 0,
                   }}
                 />
@@ -119,12 +121,14 @@ export default function PlanetSection({
               {/* Rings for Saturn (Front half) */}
               {name === 'Saturn' && (
                 <div 
-                  className="absolute top-1/2 left-1/2 rounded-[50%] border-[16px] border-[#c29d62] pointer-events-none opacity-80"
+                  className="absolute top-1/2 left-1/2 rounded-[50%] pointer-events-none"
                   style={{
-                    width: '240%',
-                    height: '240%',
+                    width: '300%',
+                    height: '300%',
                     transform: 'translate(-50%, -50%) rotateX(75deg) rotateY(-15deg) rotateZ(-15deg)',
-                    boxShadow: '0 0 20px rgba(202, 138, 4, 0.3), inset 0 0 20px rgba(202, 138, 4, 0.3)',
+                    background: 'linear-gradient(160deg, rgb(245, 225, 180) 0%, rgb(210, 180, 120) 30%, rgb(140, 100, 60) 70%, rgb(50, 30, 15) 100%)',
+                    WebkitMaskImage: 'radial-gradient(circle closest-side, transparent 38%, rgba(0,0,0,0.3) 39%, rgba(0,0,0,0.7) 46%, transparent 48%, rgba(0,0,0,0.95) 50%, rgba(0,0,0,0.8) 64%, rgba(0,0,0,0.5) 72%, rgba(0,0,0,0.1) 78%, transparent 80%)',
+                    maskImage: 'radial-gradient(circle closest-side, transparent 38%, rgba(0,0,0,0.3) 39%, rgba(0,0,0,0.7) 46%, transparent 48%, rgba(0,0,0,0.95) 50%, rgba(0,0,0,0.8) 64%, rgba(0,0,0,0.5) 72%, rgba(0,0,0,0.1) 78%, transparent 80%)',
                     clipPath: 'polygon(0 50%, 100% 50%, 100% 100%, 0 100%)',
                     zIndex: 20,
                   }}
