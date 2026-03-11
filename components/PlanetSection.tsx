@@ -116,6 +116,114 @@ export default function PlanetSection({
               >
                 {/* Texture overlay (simple CSS pattern) */}
                 <div className="absolute inset-0 opacity-20 mix-blend-overlay bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPgo8cmVjdCB3aWR0aD0iNCIgaGVpZ2h0PSI0IiBmaWxsPSIjZmZmIiBmaWxsLW9wYWNpdHk9IjAuMDUiLz4KPC9zdmc+')]"></div>
+
+                {/* Earth Clouds */}
+                {name === 'Earth' && (
+                  <motion.div
+                    className="absolute inset-0 opacity-60 mix-blend-screen"
+                    style={{
+                      backgroundImage: `url("data:image/svg+xml;utf8,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='clouds'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.012' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 1 0 0 0 -0.2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23clouds)'/%3E%3C/svg%3E")`,
+                      backgroundSize: 'cover'
+                    }}
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
+                  />
+                )}
+
+                {/* Venus Clouds */}
+                {name === 'Venus' && (
+                  <motion.div
+                    className="absolute inset-0 opacity-70 mix-blend-screen"
+                    style={{
+                      backgroundImage: `url("data:image/svg+xml;utf8,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='venus'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.008' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.9 0 0 0 0 0.8 0 0 0 0 0.4 1 0 0 0 -0.1'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23venus)'/%3E%3C/svg%3E")`,
+                      backgroundSize: 'cover'
+                    }}
+                    animate={{ rotate: -360, scale: [1, 1.05, 1] }}
+                    transition={{ 
+                      rotate: { duration: 80, repeat: Infinity, ease: "linear" },
+                      scale: { duration: 10, repeat: Infinity, ease: "easeInOut" }
+                    }}
+                  />
+                )}
+
+                {/* Mars Dust Storms */}
+                {name === 'Mars' && (
+                  <motion.div
+                    className="absolute inset-0 opacity-40 mix-blend-color-dodge"
+                    style={{
+                      backgroundImage: `url("data:image/svg+xml;utf8,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='mars'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.05' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.9 0 0 0 0 0.4 0 0 0 0 0.1 1 0 0 0 -0.3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23mars)'/%3E%3C/svg%3E")`,
+                      backgroundSize: 'cover'
+                    }}
+                    animate={{ rotate: 360, opacity: [0.2, 0.5, 0.2] }}
+                    transition={{ 
+                      rotate: { duration: 100, repeat: Infinity, ease: "linear" },
+                      opacity: { duration: 15, repeat: Infinity, ease: "easeInOut" }
+                    }}
+                  />
+                )}
+
+                {/* Jupiter Bands */}
+                {name === 'Jupiter' && (
+                  <div className="absolute inset-0 flex flex-col justify-between opacity-40 mix-blend-overlay overflow-hidden">
+                    {[...Array(8)].map((_, i) => (
+                      <motion.div
+                        key={i}
+                        className="w-[200%] flex-1"
+                        style={{
+                          background: 'linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.3) 20%, rgba(0,0,0,0.2) 50%, rgba(255,255,255,0.2) 80%, transparent 100%)',
+                        }}
+                        animate={{ x: i % 2 === 0 ? ['-50%', '0%'] : ['0%', '-50%'] }}
+                        transition={{ duration: 15 + (i % 3) * 5, repeat: Infinity, ease: "linear" }}
+                      />
+                    ))}
+                  </div>
+                )}
+
+                {/* Uranus Vertical Bands */}
+                {name === 'Uranus' && (
+                  <div className="absolute inset-0 flex justify-between opacity-30 mix-blend-overlay overflow-hidden">
+                    {[...Array(6)].map((_, i) => (
+                      <motion.div
+                        key={i}
+                        className="h-[200%] flex-1"
+                        style={{
+                          background: 'linear-gradient(180deg, transparent 0%, rgba(255,255,255,0.4) 20%, rgba(0,0,0,0.1) 50%, rgba(255,255,255,0.3) 80%, transparent 100%)',
+                        }}
+                        animate={{ y: i % 2 === 0 ? ['-50%', '0%'] : ['0%', '-50%'] }}
+                        transition={{ duration: 20 + (i % 2) * 10, repeat: Infinity, ease: "linear" }}
+                      />
+                    ))}
+                  </div>
+                )}
+
+                {/* Neptune High-Speed Winds */}
+                {name === 'Neptune' && (
+                  <div className="absolute inset-0 flex flex-col justify-around opacity-60 mix-blend-screen overflow-hidden">
+                    {[...Array(5)].map((_, i) => (
+                      <motion.div
+                        key={i}
+                        className="h-3 w-[300%]"
+                        style={{
+                          background: 'linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.8) 10%, transparent 20%, rgba(255,255,255,0.5) 50%, transparent 60%)',
+                        }}
+                        animate={{ x: ['0%', '-50%'] }}
+                        transition={{ duration: 4 + i * 1.5, repeat: Infinity, ease: "linear" }}
+                      />
+                    ))}
+                  </div>
+                )}
+
+                {/* Atmospheric Glow Pulse */}
+                {['Venus', 'Earth', 'Mars', 'Jupiter', 'Saturn', 'Uranus', 'Neptune'].includes(name) && (
+                  <motion.div
+                    className="absolute inset-0 rounded-full pointer-events-none"
+                    style={{
+                      boxShadow: `inset 0 0 30px ${color}80, 0 0 20px ${color}40`
+                    }}
+                    animate={{ opacity: [0.5, 1, 0.5] }}
+                    transition={{ duration: 3 + (index % 3), repeat: Infinity, ease: "easeInOut" }}
+                  />
+                )}
               </motion.div>
               
               {/* Rings for Saturn (Front half) */}
