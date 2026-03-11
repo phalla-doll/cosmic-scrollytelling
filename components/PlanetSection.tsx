@@ -63,7 +63,11 @@ export default function PlanetSection({
             className="flex-1 flex justify-center items-center"
           >
             <motion.div 
-              className="relative cursor-pointer group"
+              className="relative cursor-pointer group flex items-center justify-center"
+              style={{
+                width: `${Math.max(120, size * 100)}px`,
+                height: `${Math.max(120, size * 100)}px`,
+              }}
               onClick={() => setIsExpanded(!isExpanded)}
               animate={{ scale: isExpanded ? 1.4 : 1 }}
               whileHover={{ scale: isExpanded ? 1.4 : 1.05 }}
@@ -83,30 +87,46 @@ export default function PlanetSection({
                 transition={{ duration: 0.4 }}
                 style={{ backgroundColor: color }}
               />
+
+              {/* Rings for Saturn (Back half) */}
+              {name === 'Saturn' && (
+                <div 
+                  className="absolute top-1/2 left-1/2 rounded-[50%] border-[16px] border-[#c29d62] pointer-events-none opacity-40"
+                  style={{
+                    width: '240%',
+                    height: '240%',
+                    transform: 'translate(-50%, -50%) rotateX(75deg) rotateY(-15deg) rotateZ(-15deg)',
+                    boxShadow: '0 0 20px rgba(202, 138, 4, 0.3), inset 0 0 20px rgba(202, 138, 4, 0.3)',
+                    zIndex: 0,
+                  }}
+                />
+              )}
+
               {/* The Planet */}
               <motion.div
-                className="relative rounded-full shadow-[inset_-20px_-20px_40px_rgba(0,0,0,0.8)] overflow-hidden transition-all duration-500 group-hover:shadow-[inset_-10px_-10px_30px_rgba(0,0,0,0.5)]"
+                className="absolute inset-0 rounded-full shadow-[inset_-20px_-20px_40px_rgba(0,0,0,0.8)] overflow-hidden transition-all duration-500 group-hover:shadow-[inset_-10px_-10px_30px_rgba(0,0,0,0.5)]"
                 style={{
                   rotate: planetRotate,
-                  width: `${Math.max(120, size * 100)}px`,
-                  height: `${Math.max(120, size * 100)}px`,
                   backgroundColor: color,
                   backgroundImage: `radial-gradient(circle at 30% 30%, rgba(255,255,255,0.2) 0%, transparent 50%), linear-gradient(145deg, ${color} 0%, #000 100%)`,
+                  zIndex: 10,
                 }}
               >
                 {/* Texture overlay (simple CSS pattern) */}
                 <div className="absolute inset-0 opacity-20 mix-blend-overlay bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPgo8cmVjdCB3aWR0aD0iNCIgaGVpZ2h0PSI0IiBmaWxsPSIjZmZmIiBmaWxsLW9wYWNpdHk9IjAuMDUiLz4KPC9zdmc+')]"></div>
               </motion.div>
               
-              {/* Rings for Saturn */}
+              {/* Rings for Saturn (Front half) */}
               {name === 'Saturn' && (
-                <motion.div 
-                  className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-[50%] border-[12px] border-yellow-800/40"
+                <div 
+                  className="absolute top-1/2 left-1/2 rounded-[50%] border-[16px] border-[#c29d62] pointer-events-none opacity-80"
                   style={{
-                    width: '180%',
-                    height: '40%',
-                    transform: 'translate(-50%, -50%) rotate(-20deg)',
-                    boxShadow: '0 0 20px rgba(202, 138, 4, 0.3), inset 0 0 20px rgba(202, 138, 4, 0.3)'
+                    width: '240%',
+                    height: '240%',
+                    transform: 'translate(-50%, -50%) rotateX(75deg) rotateY(-15deg) rotateZ(-15deg)',
+                    boxShadow: '0 0 20px rgba(202, 138, 4, 0.3), inset 0 0 20px rgba(202, 138, 4, 0.3)',
+                    clipPath: 'polygon(0 50%, 100% 50%, 100% 100%, 0 100%)',
+                    zIndex: 20,
                   }}
                 />
               )}
@@ -114,6 +134,7 @@ export default function PlanetSection({
               {/* Hover/Active Hint */}
               <motion.div 
                 className={`absolute inset-0 flex items-center justify-center transition-opacity duration-300 ${isExpanded ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'}`}
+                style={{ zIndex: 30 }}
               >
                 <div className="bg-black/40 backdrop-blur-md p-3 rounded-full text-white shadow-lg border border-white/10">
                   {isExpanded ? <X className="w-6 h-6" /> : <Search className="w-6 h-6" />}
