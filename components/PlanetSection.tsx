@@ -66,16 +66,26 @@ export default function PlanetSection({
               className="relative cursor-pointer group"
               onClick={() => setIsExpanded(!isExpanded)}
               animate={{ scale: isExpanded ? 1.4 : 1 }}
-              transition={{ type: 'spring', stiffness: 200, damping: 20 }}
+              whileHover={{ scale: isExpanded ? 1.4 : 1.05 }}
+              transition={{ type: 'spring', stiffness: 300, damping: 20 }}
             >
               {/* Glow effect */}
-              <div
-                className="absolute inset-0 rounded-full blur-3xl opacity-30 transition-opacity duration-500 group-hover:opacity-60"
-                style={{ backgroundColor: color, transform: 'scale(1.2)' }}
+              <motion.div
+                className="absolute inset-0 rounded-full blur-3xl"
+                animate={{ 
+                  opacity: isExpanded ? 0.6 : 0.3,
+                  scale: isExpanded ? 1.4 : 1.2 
+                }}
+                whileHover={{
+                  opacity: isExpanded ? 0.6 : 0.8,
+                  scale: isExpanded ? 1.4 : 1.35
+                }}
+                transition={{ duration: 0.4 }}
+                style={{ backgroundColor: color }}
               />
               {/* The Planet */}
               <motion.div
-                className="relative rounded-full shadow-[inset_-20px_-20px_40px_rgba(0,0,0,0.8)] overflow-hidden transition-shadow duration-500 group-hover:shadow-[inset_-10px_-10px_30px_rgba(0,0,0,0.6)]"
+                className="relative rounded-full shadow-[inset_-20px_-20px_40px_rgba(0,0,0,0.8)] overflow-hidden transition-all duration-500 group-hover:shadow-[inset_-10px_-10px_30px_rgba(0,0,0,0.5)]"
                 style={{
                   rotate: planetRotate,
                   width: `${Math.max(120, size * 100)}px`,
